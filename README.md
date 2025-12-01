@@ -2,7 +2,7 @@
 
 Ứng dụng web giúp bạn tính toán và theo dõi hiệu quả tiết kiệm chi phí từ hệ thống năng lượng mặt trời của mình.
 
-**🎨 Phiên bản 3.3.4 - Ultra Compact UI + Alternating Colors** (2025-01-30)
+**🎨 Phiên bản 3.3.7 - Ultra Compact UI + Simplified Design** (2025-01-30)
 
 ## ✨ Tính Năng Chính
 
@@ -497,10 +497,53 @@ Dự án này được phát triển cho mục đích cá nhân và học tập.
 
 ---
 
-**Phiên bản**: 3.3.4  
+**Phiên bản**: 3.3.7  
 **Cập nhật lần cuối**: 2025-01-30  
 **Tương thích**: Mọi trình duyệt hiện đại  
 **Tác giả**: Phát triển bởi Genspark AI
+
+## 🆕 Changelog v3.3.7 (2025-01-30) - Simplified Card Colors
+
+### 🎨 Visual Simplification:
+✨ **Single green color** - Tất cả summary cards dùng màu xanh lá đồng nhất  
+✨ **Less overwhelming** - Bỏ màu vàng, đỏ, xanh dương (không lòe loẹt nữa)  
+✨ **Professional look** - Giao diện gọn gàng, chuyên nghiệp, thống nhất  
+✨ **Theme match** - Xanh lá = năng lượng mặt trời, eco-friendly  
+✨ **Animations kept** - Vẫn giữ hiệu ứng xoay, hover, pulse  
+
+### 🎨 What Changed:
+- ❌ Removed: Gold (🟡), Red (🔴), Cyan (🔵) colors
+- ✅ Kept: Green (🟢) color for all cards
+- ✅ Kept: All animations and interactions
+
+## 🆕 Changelog v3.3.6 (2025-01-30) - Hover Tooltip Popup
+
+### 💬 Interactive Tooltips:
+✨ **Popup tooltip** - Hover vào card tháng → Tooltip nhảy lên với tên tháng  
+✨ **Seasonal emojis** - 12 emoji theo mùa: ❄️ Đông, 🌸 Xuân, ☀️ Hạ, 🍂 Thu  
+✨ **Bouncing animation** - Emoji nhảy nhót, tooltip slide mượt mà  
+✨ **Card hover effects** - Card nâng lên 8px, phóng to 3%, glow sáng hơn  
+✨ **Easy identification** - Không cần đọc, nhìn tooltip biết ngay tháng nào  
+
+### 🎨 Emoji Mapping:
+- ❄️ Tháng 1, 🌸 Tháng 2, 🌼 Tháng 3, 🌷 Tháng 4
+- ☀️ Tháng 5, 🌞 Tháng 6, 🔥 Tháng 7, 🌈 Tháng 8
+- 🍂 Tháng 9, 🍁 Tháng 10, 🌙 Tháng 11, 🎄 Tháng 12
+
+## 🆕 Changelog v3.3.5 (2025-01-30) - Animated Summary Cards
+
+### ✨ Visual Animation:
+✨ **Rotating border** - Viền xoay vòng 360° mỗi 4 giây, đẹp mắt, hiện đại  
+✨ **Color-coded values** - Phân loại màu: 🟡 Tiền, 🔴 Load, 🟢 Solar, 🔵 Grid EVN  
+✨ **Hover effects** - Card nâng lên, phóng to, text pulse khi hover  
+✨ **Premium look** - Giao diện chuyên nghiệp như app cao cấp  
+✨ **GPU-accelerated** - Smooth 60 FPS, không lag  
+
+### 🎨 Color Scheme:
+- 🟡 **Gold (Tiền)**: Tổng tiết kiệm, Chi phí, Trung bình tiết kiệm
+- 🔴 **Red (Load)**: Tổng điện tiêu thụ, Trung bình tiêu thụ
+- 🟢 **Green (Solar)**: Tổng solar, Trung bình solar
+- 🔵 **Cyan (Grid)**: Tổng EVN, Trung bình EVN
 
 ## 🆕 Changelog v3.3.4 (2025-01-30) - Alternating Colors
 
