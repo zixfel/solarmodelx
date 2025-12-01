@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Bậc Thang Giá Điện EVN</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 2em;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 0.95em;
+        }
+        
+        .tier-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 30px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .tier-table th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        .tier-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .tier-table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        .tier-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        
+        .tier-number {
+            font-weight: 600;
+            color: #667eea;
+        }
+        
+        .price {
+            font-weight: 600;
+            color: #28a745;
+        }
+        
+        .input-section {
+            margin-bottom: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            border-radius: 15px;
+        }
+        
+        .input-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+        }
+        
+        input[type="number"] {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #dee2e6;
+            border-radius: 10px;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        input[type="number"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+        
+        .btn-calculate {
+            width: 100%;
+            padding: 15px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: transform 0.2s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+        
+        .btn-calculate:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-calculate:active {
+            transform: translateY(0);
+        }
+        
+        .result-section {
+            display: none;
+            margin-top: 30px;
+            padding: 25px;
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .result-section.show {
+            display: block;
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .breakdown {
+            margin-top: 20px;
+        }
+        
+        .breakdown-item {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px dashed #cbd5e0;
+        }
+        
+        .breakdown-item:last-child {
+            border-bottom: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            color: #667eea;
+            padding-top: 15px;
+            margin-top: 10px;
+            border-top: 2px solid #667eea;
+        }
+        
+        .tier-label {
+            color: #666;
+        }
+        
+        .tier-value {
+            font-weight: 600;
+            color: #333;
+        }
+        
+        .final-result {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #28a745;
+            text-align: center;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            color: #856404;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⚡ Test Bậc Thang Giá Điện EVN</h1>
+        <p class="subtitle">Kiểm tra tính toán chi phí điện theo 6 bậc giá điện chính thức của EVN + VAT 8%</p>
+        
+        <div class="warning">
+            <strong>📌 Lưu ý:</strong> Đây là công cụ test để kiểm tra logic tính toán bậc thang giá điện. 
+            Kết quả phải khớp với hóa đơn EVN thực tế!
+        </div>
+        
+        <h3 style="margin-bottom: 15px; color: #333;">📊 Bậc Thang Giá Điện EVN</h3>
+        <table class="tier-table">
+            <thead>
+                <tr>
+                    <th>Bậc</th>
+                    <th>Mức tiêu thụ</th>
+                    <th>Giá (đồng/kWh)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><span class="tier-number">Bậc 1</span></td>
+                    <td>0 - 50 kWh</td>
+                    <td><span class="price">1,984</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-number">Bậc 2</span></td>
+                    <td>51 - 100 kWh</td>
+                    <td><span class="price">2,050</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-number">Bậc 3</span></td>
+                    <td>101 - 200 kWh</td>
+                    <td><span class="price">2,380</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-number">Bậc 4</span></td>
+                    <td>201 - 300 kWh</td>
+                    <td><span class="price">2,998</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-number">Bậc 5</span></td>
+                    <td>301 - 400 kWh</td>
+                    <td><span class="price">3,350</span></td>
+                </tr>
+                <tr>
+                    <td><span class="tier-number">Bậc 6</span></td>
+                    <td>401+ kWh</td>
+                    <td><span class="price">3,460</span></td>
+                </tr>
+            </tbody>
+        </table>
+        
+        <div class="input-section">
+            <h3 style="margin-bottom: 20px; color: #333;">🔢 Nhập Số Điện Tiêu Thụ</h3>
+            <div class="input-group">
+                <label for="kwh">Điện tiêu thụ (kWh):</label>
+                <input type="number" id="kwh" placeholder="Ví dụ: 350" min="0" step="0.1">
+            </div>
+            <button class="btn-calculate" onclick="calculate()">🧮 Tính Toán</button>
+        </div>
+        
+        <div class="result-section" id="resultSection">
+            <h3 style="margin-bottom: 15px; color: #333;">📋 Chi Tiết Tính Toán</h3>
+            <div class="breakdown" id="breakdown"></div>
+            <div class="final-result" id="finalResult"></div>
+        </div>
+    </div>
+    
+    <script>
+        function calculateTieredPrice(kWh) {
+            if (kWh <= 0) return { total: 0, breakdown: [] };
+            
+            const breakdown = [];
+            let totalCost = 0;
+            let remaining = kWh;
+            
+            // Bậc 1: 0 - 50 kWh = 1,984 đồng/kWh
+            if (remaining > 0) {
+                const tier1 = Math.min(remaining, 50);
+                const cost1 = tier1 * 1984;
+                totalCost += cost1;
+                breakdown.push({
+                    tier: 1,
+                    range: '0-50 kWh',
+                    kwh: tier1,
+                    price: 1984,
+                    cost: cost1
+                });
+                remaining -= tier1;
+            }
+            
+            // Bậc 2: 51 - 100 kWh = 2,050 đồng/kWh
+            if (remaining > 0) {
+                const tier2 = Math.min(remaining, 50);
+                const cost2 = tier2 * 2050;
+                totalCost += cost2;
+                breakdown.push({
+                    tier: 2,
+                    range: '51-100 kWh',
+                    kwh: tier2,
+                    price: 2050,
+                    cost: cost2
+                });
+                remaining -= tier2;
+            }
+            
+            // Bậc 3: 101 - 200 kWh = 2,380 đồng/kWh
+            if (remaining > 0) {
+                const tier3 = Math.min(remaining, 100);
+                const cost3 = tier3 * 2380;
+                totalCost += cost3;
+                breakdown.push({
+                    tier: 3,
+                    range: '101-200 kWh',
+                    kwh: tier3,
+                    price: 2380,
+                    cost: cost3
+                });
+                remaining -= tier3;
+            }
+            
+            // Bậc 4: 201 - 300 kWh = 2,998 đồng/kWh
+            if (remaining > 0) {
+                const tier4 = Math.min(remaining, 100);
+                const cost4 = tier4 * 2998;
+                totalCost += cost4;
+                breakdown.push({
+                    tier: 4,
+                    range: '201-300 kWh',
+                    kwh: tier4,
+                    price: 2998,
+                    cost: cost4
+                });
+                remaining -= tier4;
+            }
+            
+            // Bậc 5: 301 - 400 kWh = 3,350 đồng/kWh
+            if (remaining > 0) {
+                const tier5 = Math.min(remaining, 100);
+                const cost5 = tier5 * 3350;
+                totalCost += cost5;
+                breakdown.push({
+                    tier: 5,
+                    range: '301-400 kWh',
+                    kwh: tier5,
+                    price: 3350,
+                    cost: cost5
+                });
+                remaining -= tier5;
+            }
+            
+            // Bậc 6: 401+ kWh = 3,460 đồng/kWh
+            if (remaining > 0) {
+                const cost6 = remaining * 3460;
+                totalCost += cost6;
+                breakdown.push({
+                    tier: 6,
+                    range: '401+ kWh',
+                    kwh: remaining,
+                    price: 3460,
+                    cost: cost6
+                });
+            }
+            
+            // Áp dụng VAT 8%
+            const vatRate = 0.08;
+            const totalWithVAT = totalCost * (1 + vatRate);
+            
+            return {
+                totalBeforeVAT: totalCost,
+                vat: totalCost * vatRate,
+                total: totalWithVAT,
+                breakdown: breakdown
+            };
+        }
+        
+        function formatVND(amount) {
+            return new Intl.NumberFormat('vi-VN', {
+                style: 'currency',
+                currency: 'VND',
+                minimumFractionDigits: 0
+            }).format(amount);
+        }
+        
+        function calculate() {
+            const kWhInput = document.getElementById('kwh');
+            const kWh = parseFloat(kWhInput.value);
+            
+            if (!kWh || kWh <= 0) {
+                alert('⚠️ Vui lòng nhập số điện tiêu thụ hợp lệ!');
+                return;
+            }
+            
+            const result = calculateTieredPrice(kWh);
+            
+            // Hiển thị breakdown
+            const breakdownHtml = result.breakdown.map(item => `
+                <div class="breakdown-item">
+                    <span class="tier-label">
+                        <strong>Bậc ${item.tier}</strong> (${item.range}): 
+                        ${item.kwh.toFixed(1)} kWh × ${item.price.toLocaleString()} đ
+                    </span>
+                    <span class="tier-value">${formatVND(item.cost)}</span>
+                </div>
+            `).join('');
+            
+            const summaryHtml = `
+                <div class="breakdown-item">
+                    <span class="tier-label"><strong>Tổng trước VAT:</strong></span>
+                    <span class="tier-value">${formatVND(result.totalBeforeVAT)}</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="tier-label"><strong>VAT 8%:</strong></span>
+                    <span class="tier-value">${formatVND(result.vat)}</span>
+                </div>
+                <div class="breakdown-item">
+                    <span class="tier-label"><strong>TỔNG CỘNG:</strong></span>
+                    <span class="tier-value">${formatVND(result.total)}</span>
+                </div>
+            `;
+            
+            document.getElementById('breakdown').innerHTML = breakdownHtml + summaryHtml;
+            document.getElementById('finalResult').innerHTML = 
+                `💰 Chi phí điện: <span style="color: #28a745;">${formatVND(result.total)}</span>`;
+            
+            // Hiển thị kết quả
+            const resultSection = document.getElementById('resultSection');
+            resultSection.classList.add('show');
+            resultSection.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+        
+        // Enter to calculate
+        document.getElementById('kwh').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                calculate();
+            }
+        });
+        
+        // Auto-select on focus
+        document.getElementById('kwh').addEventListener('focus', function() {
+            this.select();
+        });
+    </script>
+</body>
+</html>

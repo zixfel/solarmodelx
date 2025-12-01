@@ -1,0 +1,119 @@
+═══════════════════════════════════════════════════════════════
+  🌞 HƯỚNG DẪN DEPLOY ỨNG DỤNG TÍNH TOÁN SOLAR - NHANH NHẤT
+═══════════════════════════════════════════════════════════════
+
+📁 FILES BẠN CẦN:
+- index.html (ứng dụng chính)
+- TEST-TIERED-PRICING.html (tool tính tiền EVN)
+
+═══════════════════════════════════════════════════════════════
+
+🚀 CÁCH 1: UPLOAD LÊN HOSTING (5 PHÚT)
+═══════════════════════════════════════════════════════════════
+
+1. Đăng nhập cPanel của hosting
+2. Vào "File Manager"
+3. Tạo folder mới: public_html/solar-calculator/
+4. Upload 2 files vào folder đó
+5. Truy cập: https://yourdomain.com/solar-calculator/
+
+✅ XONG!
+
+═══════════════════════════════════════════════════════════════
+
+🚀 CÁCH 2: NETLIFY - MIỄN PHÍ (1 PHÚT)
+═══════════════════════════════════════════════════════════════
+
+1. Vào netlify.com → Sign up (free)
+2. Kéo thả 2 files vào
+3. Đợi 30 giây
+4. Truy cập: https://your-app.netlify.app/
+
+✅ XONG! Free SSL, Free hosting!
+
+═══════════════════════════════════════════════════════════════
+
+🚀 CÁCH 3: GITHUB PAGES - MIỄN PHÍ (3 PHÚT)
+═══════════════════════════════════════════════════════════════
+
+1. Tạo repo mới trên github.com
+2. Upload 2 files
+3. Settings → Pages → Enable
+4. Truy cập: https://username.github.io/repo-name/
+
+✅ XONG! Free forever!
+
+═══════════════════════════════════════════════════════════════
+
+🚀 CÁCH 4: WORDPRESS (2 PHÚT)
+═══════════════════════════════════════════════════════════════
+
+A. CÁCH ĐƠN GIẢN:
+1. Upload vào: wp-content/solar-calculator/
+2. Truy cập: yourdomain.com/wp-content/solar-calculator/
+
+B. DÙNG IFRAME (trong bài viết):
+<iframe 
+    src="/wp-content/solar-calculator/index.html" 
+    width="100%" 
+    height="1200px" 
+    style="border:none;">
+</iframe>
+
+C. TẠO PLUGIN (chuyên nghiệp):
+1. Tạo folder: wp-content/plugins/solar-calculator/
+2. Upload 3 files:
+   - wordpress-integration.php
+   - index.html
+   - TEST-TIERED-PRICING.html
+3. Activate plugin
+4. Dùng shortcode: [solar_calculator]
+
+✅ XONG!
+
+═══════════════════════════════════════════════════════════════
+
+📱 LIÊN KẾT GIỮA 2 TOOLS
+═══════════════════════════════════════════════════════════════
+
+Nút "⚡ Tính Tiền Điện EVN" trong index.html đã link sẵn đến:
+TEST-TIERED-PRICING.html
+
+→ Chỉ cần upload 2 files cùng folder là tự động hoạt động!
+
+═══════════════════════════════════════════════════════════════
+
+🎯 KHUYẾN NGHỊ
+═══════════════════════════════════════════════════════════════
+
+✅ Website cá nhân      → GitHub Pages (miễn phí)
+✅ Website doanh nghiệp → Upload hosting (kiểm soát)
+✅ WordPress            → Plugin + Shortcode
+✅ Deploy nhanh         → Netlify (30 giây!)
+
+═══════════════════════════════════════════════════════════════
+
+🛠️ TROUBLESHOOTING
+═══════════════════════════════════════════════════════════════
+
+Lỗi 404:
+→ Kiểm tra đường dẫn file
+→ Clear cache (Ctrl + F5)
+
+Link TEST-TIERED-PRICING.html không work:
+→ Đảm bảo 2 files trong cùng folder
+
+iFrame không hiển thị:
+→ Tăng height="1500px"
+
+═══════════════════════════════════════════════════════════════
+
+📖 CHI TIẾT HƠN
+═══════════════════════════════════════════════════════════════
+
+Xem file: DEPLOYMENT-GUIDE.md
+
+═══════════════════════════════════════════════════════════════
+
+✨ Version 3.2 | Deploy time: < 5 phút
+═══════════════════════════════════════════════════════════════
